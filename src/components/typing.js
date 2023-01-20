@@ -1,13 +1,13 @@
 import ReactTypingEffect from 'react-typing-effect';
 
-const Typing = () => {
+const Typing = (props) => {
     
 
     return (
         <>
         <ReactTypingEffect
-            text={["JackJack Labs"]}
-            className='name'
+            text={props.text}
+            className={props.cssName}
             typingDelay={800}
         />
         </>
