@@ -1,11 +1,96 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { useState, useEffect } from 'react'
+import * as THREE from 'three'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
+import Stats from 'three/examples/jsm/libs/stats.module'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function Home() {
+  useEffect(() => {
+    const scene = new THREE.Scene();
+    
+    // CAMERA -----------------------------------------------------------
+    const camera = new THREE.PerspectiveCamera(
+      50,
+      window.innerWidth / window.innerHeight,
+      1,
+      1000
+    );
+    camera.position.z = 96;
+    
+    const canvas = document.getElementById('canvas');
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // LIGHTS -----------------------------------------------------------
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    ambientLight.castShadow = true;
+    scene.add(ambientLight);
+
+    const spotLight = new THREE.SpotLight(0xffffff, 1);
+    spotLight.castShadow = true;
+    scene.add(spotLight);
+
+    // Helpers
+    const lightHelper = new THREE.PointLightHelper(spotLight)
+    const gridHelper = new THREE.GridHelper(200, 50);
+    scene.add(lightHelper, gridHelper)
+
+    // CONTROLS -----------------------------------------------------------
+    const controls = new OrbitControls(camera, renderer.domElement);
+    // STATS -----------------------------------------------------------
+    const stats = Stats();
+    document.body.appendChild(stats.dom)
+
+    // TORUS -----------------------------------------------------------
+    // const torusGeometry = new THREE.TorusGeometry(20, 10, 16, 100);
+    // const torusMaterial = new THREE.MeshNormalMaterial({ wireframe: true,});
+    // const torusMesh = new THREE.Mesh(torusGeometry, torusMaterial);
+    // scene.add(torusMesh);
+
+    // SNAKE GAME
+    const loader = new GLTFLoader();
+    loader.load('./crt_monitor/scene.gltf', (gltf) => {
+      gltf.scene.scale.set(0.2, 0.2, 0.2);
+      gltf.scene.rotation.y = -Math.PI / 2;
+      gltf.scene.position.y = 5;
+      gltf.scene.position.z = -8;
+      scene.add(gltf.scene);
+    });
+
+    const planeGeometry = new THREE.PlaneGeometry(32, 32, 32, 32);
+    const planeMaterial = new THREE.PlaneGeometry
+    // scene.add()
+    
+    // if window resizes
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    window.addEventListener('resize', () => onWindowResize(), false);
+    
+
+
+    // ANIMATIONS -----------------------------------------------------------
+    const animate = () => {
+      // updates
+      stats.update();
+      controls.update();
+      
+      // torus
+      // torusMesh.rotation.x += 0.01;
+      // torusMesh.rotation.y += 0.01;
+
+      renderer.render(scene, camera);
+      window.requestAnimationFrame(animate);
+    }
+    animate();
+  }, [])
   return (
     <>
       <Head>
@@ -14,110 +99,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      <canvas id='canvas'/>
     </>
   )
 }
