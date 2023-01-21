@@ -6,3 +6,28 @@
 .subtitle {
     font-size: 30px;
 }
+body {
+    width: 100vw;
+    margin: 0;
+    overflow: hidden !important;
+    height: 100vh;
+}
+
+#canvas {
+    z-index: 998;
+
+}
+
+.computerText{
+    font-size: 30px;
+    margin: 10px;
+}
+
+.stickyCat {
+    width: 300px;    
+}
+
+.btn {
+    cursor: pointer;
+    margin: 50px;
+}

@@ -3,6 +3,7 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
 import ComputerInception3D from '../components/computerInception3';
 import Typing from '../components/typing';
+import Link from 'next/link';
 
 
 export default function Home() {
@@ -31,18 +32,33 @@ export default function Home() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer
-          sticky={{start: 0, end: 2.5}}
+          offset={3.5}
+          speed={3}
+          factor={2}
+          // style={{
+          //   backgroundImage: `url(${moon})`,
+          //   backgroundSize: 'cover',
+          // }}
         >
-          <img src='/assets/cat.gif' />
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'end', width: '100vw', justifyContent: 'end', }}>
+            <Link href={'/computer'}><button className='btn'>computer</button></Link>
+            <Link href={'/skybox'}><button className='btn'>skybox</button></Link>
+            <Link href={'/template'}><button className='btn'>template</button></Link>
+          </div>
         </ParallaxLayer>
-        <ParallaxLayer
-          offset={1}
+        
+        {/* <ParallaxLayer
+          offset={2}
           speed={0.5}
         >
-          <div style={{display: 'flex', flexDirection: 'column', height: '100vh', alignItems: 'center', justifyContent: 'center'}}>
-            <Typing text={["Wbu wyd?"]} cssName={'name'} />
-            <Typing text={["Zaza keeps running over my keyboatfdysgu2718uy32h"]} cssName={'subtitle'} />
+          <div id='computerContainer' style={{display: 'flex', flexDirection: 'column', height: '100vh', alignItems: 'center', justifyContent: 'center'}}>
+            <ComputerInception3D />
           </div>
+        </ParallaxLayer> */}
+        <ParallaxLayer
+          sticky={{start: 0, end: 2.5}}
+        >
+          <img src='/assets/cat.gif' className='stickyCat'/>
         </ParallaxLayer>
       </Parallax>
       
