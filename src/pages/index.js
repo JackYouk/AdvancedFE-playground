@@ -44,6 +44,8 @@ export default function Home() {
             <Link href={'/computer'}><button className='btn'>computer</button></Link>
             <Link href={'/skybox'}><button className='btn'>skybox</button></Link>
             <Link href={'/template'}><button className='btn'>template</button></Link>
+            <Link href={'/shinyball'}><button className='btn'>shiny ball</button></Link>
+            <Link href={'/physicsExample'}><button className='btn'>physics example</button></Link>
           </div>
         </ParallaxLayer>
         
