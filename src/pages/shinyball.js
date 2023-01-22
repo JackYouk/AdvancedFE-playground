@@ -30,7 +30,7 @@ export default function ShinyBall() {
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     // document.querySelector('#computerContainer').appendChild(renderer.domElement);
-    document.body.appendChild(renderer.domElement);
+    document.querySelector('#canvasContainer').appendChild(renderer.domElement);
 
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -105,7 +105,10 @@ export default function ShinyBall() {
   }, [])
   return (
     <>
-      <canvas id='canvas' />
+      <div id='canvasContainer'>
+    <canvas id='canvas'/>
+
+    </div>
     </>
   )
 }

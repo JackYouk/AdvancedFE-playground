@@ -59,7 +59,7 @@ export default function Home() {
           </div>
         </ParallaxLayer> */}
         <ParallaxLayer
-          sticky={{start: 0, end: 1.5}}
+          sticky={{start: 0, end: 1.1}}
         >
           <img src='/assets/cat.gif' className='stickyCat'/>
         </ParallaxLayer>

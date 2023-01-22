@@ -31,7 +31,7 @@ export default function Morph() {
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     // document.querySelector('#computerContainer').appendChild(renderer.domElement);
-    document.body.appendChild(renderer.domElement);
+    document.querySelector('#canvasContainer').appendChild(renderer.domElement);
 
     // LIGHTS -----------------------------------------------------------
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -102,7 +102,10 @@ export default function Morph() {
   }, [])
   return (
     <>
-      <canvas id='canvas'/>
+      <div id='canvasContainer'>
+    <canvas id='canvas'/>
+
+    </div>
     </>
   )
 }

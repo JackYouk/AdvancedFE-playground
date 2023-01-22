@@ -37,8 +37,8 @@ export default function ComputerInception3D() {
       antialias: true,
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    // document.querySelector('#computerContainer').appendChild(renderer.domElement);
-    document.body.appendChild(renderer.domElement);
+    document.querySelector('#canvasContainer').appendChild(renderer.domElement);
+    // document.body.appendChild(renderer.domElement);
 
     // LIGHTS -----------------------------------------------------------
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -164,8 +164,10 @@ export default function ComputerInception3D() {
       <div style={{display: 'flex', justifyContent: 'center'}} onScroll={(e) => e.target.style({display: 'none'})}>
       <Typing text={["Go ahead, Neo, scroll your little mouse.", "Enter the matrix."]} cssName={'computerText'} />
       </div>
+    <div id='canvasContainer'>
+    <canvas id='canvas'/>
 
-      <canvas id='canvas'/>
+    </div>
     </>
   )
 }

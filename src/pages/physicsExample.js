@@ -133,7 +133,7 @@ export default function Template() {
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.shadowMap.enabled = true;
       renderer.outputEncoding = THREE.sRGBEncoding;
-      document.body.appendChild(renderer.domElement);
+      document.querySelector('#canvasContainer').appendChild(renderer.domElement);
 
       stats = new Stats();
       document.body.appendChild(stats.dom);
@@ -183,7 +183,10 @@ export default function Template() {
   return (
     <>
 
-      <canvas id='canvas' />
+<div id='canvasContainer'>
+    <canvas id='canvas'/>
+
+    </div>
     </>
   )
 }
