@@ -132,13 +132,13 @@ export default function ComputerInception3D() {
     // composer.addPass(customVignettePass);
     // composer.addPass(filmPass);
     
-    // // if window resizes
-    // function onWindowResize() {
-    //   camera.aspect = window.innerWidth / window.innerHeight;
-    //   camera.updateProjectionMatrix();
-    //   renderer.setSize(window.innerWidth, window.innerHeight);
-    // }
-    // window.addEventListener('resize', () => onWindowResize(), false);
+    // if window resizes
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    window.addEventListener('resize', () => onWindowResize(), false);
     
 
 

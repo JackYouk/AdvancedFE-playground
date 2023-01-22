@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer
-          offset={3.5}
+          offset={2.5}
           speed={3}
           factor={2}
           // style={{
@@ -46,6 +46,7 @@ export default function Home() {
             <Link href={'/template'}><button className='btn'>template</button></Link>
             <Link href={'/shinyball'}><button className='btn'>shiny ball</button></Link>
             <Link href={'/physicsExample'}><button className='btn'>physics example</button></Link>
+            <Link href={'/morph'}><button className='btn'>wavyboi</button></Link>
           </div>
         </ParallaxLayer>
         
@@ -58,7 +59,7 @@ export default function Home() {
           </div>
         </ParallaxLayer> */}
         <ParallaxLayer
-          sticky={{start: 0, end: 2.5}}
+          sticky={{start: 0, end: 1.5}}
         >
           <img src='/assets/cat.gif' className='stickyCat'/>
         </ParallaxLayer>
