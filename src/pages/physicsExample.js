@@ -1,7 +1,11 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { OimoPhysics } from 'three/addons/physics/OimoPhysics.js';
+import { OimoPhysics } from 'three/addons/physics/OimoPhysics';
 import Stats from 'three/addons/libs/stats.module.js';
+import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
+
 import { useState, useEffect } from 'react'
 
 
@@ -11,7 +15,7 @@ export default function Template() {
     let camera, scene, renderer, stats;
     let physics, position;
 
-    let boxes, spheres;
+    let boxes, spheres, names;
 
     init();
 
@@ -54,6 +58,35 @@ export default function Template() {
 
       const matrix = new THREE.Matrix4();
       const color = new THREE.Color();
+
+      // Names
+      const fontLoader = new FontLoader();
+      const ttfLoader = new TTFLoader();
+      let font;
+      ttfLoader.load('/assets/Roboto-Bold.ttf', (json) => {
+        font = fontLoader.parse(json);      
+        // name
+        const nameGeometry = new TextGeometry('Jack', {
+          height: 0.05,
+          size: 0.1,
+          font: font,
+        });
+        names = new THREE.InstancedMesh(nameGeometry, material, 100);
+        names.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
+        names.castShadow = true;
+        names.receiveShadow = true;
+        scene.add(names);
+
+        for (let i = 0; i < names.count; i++) {
+          matrix.setPosition(Math.random() - 0.5, Math.random() * 2, Math.random() - 0.5);
+          names.setMatrixAt(i, matrix);
+          names.setColorAt(i, color.setHex(0xffffff * Math.random()));
+        }
+        physics.addMesh(names, 1);
+      })
+
+
+
 
       // Boxes
 
@@ -132,6 +165,14 @@ export default function Template() {
 
       position.set(0, Math.random() + 1, 0);
       physics.setMeshPosition(spheres, position, index);
+
+      renderer.render(scene, camera);
+      // //
+
+      // index = Math.floor(Math.random() * names.count);
+
+      // position.set(0, Math.random() + 1, 0);
+      // physics.setMeshPosition(names, position, index);
 
       renderer.render(scene, camera);
 
