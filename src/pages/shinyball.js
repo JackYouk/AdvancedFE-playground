@@ -5,6 +5,7 @@ import Stats from 'three/examples/jsm/libs/stats.module'
 import Typing from "@/components/typing"
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
+import { render } from 'react-dom'
 
 
 
@@ -64,29 +65,11 @@ export default function ShinyBall() {
 
     // SHINYBALL -----------------------------------------------------------
     const envmapLoader = new THREE.PMREMGenerator(renderer);
+
     new RGBELoader().setPath('./assets/').load('sandsloot_4k.pic', function (hdrmap) {
-      const envmap = envmapLoader.fromCubemap(hdrmap);
-      const texture = new THREE.CanvasTexture(new FlakesTexture());
-      texture.wrapS = THREE.RepeatWrapping;
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.repeat.x = 10;
-      texture.repeat.y = 6;
-      const ballGeo = new THREE.SphereGeometry(600, 64, 64);
-      const ballMat = new THREE.MeshPhysicalMaterial({
-        color: 0x000000,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.07,
-        metalness: 1,
-        roughness: 0.5,
-        color: 0x000000,
-        normalMap: texture,
-        normalScale: new THREE.Vector2(0.15, 0.15),
-        side: THREE.DoubleSide,
-        envMap: envmap.texture,
-      });
-      const ballMesh = new THREE.Mesh(ballGeo, ballMat);
-      scene.add(ballMesh);
-    })
+      hdrmap.mapping = THREE.EquirectangularReflectionMapping;
+      scene.background = hdrmap;
+    });
 
     new RGBELoader().setPath('./assets/').load('sandsloot_4k.pic', function (hdrmap) {
       const envmap = envmapLoader.fromCubemap(hdrmap);
