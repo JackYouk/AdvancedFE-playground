@@ -4,16 +4,6 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import Typing from "@/components/typing"
-import {
-  planeVertexShader,
-  planeFragmentShader,
-  customVignetteVertexShader,
-  customVignetteFragmentShader,
-} from './Shaders';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
-import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass';
 
 
 export default function ComputerInception3D() {
