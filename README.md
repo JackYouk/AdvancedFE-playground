@@ -19,10 +19,10 @@ The project includes examples such as:
 - WebGL rendering
 
 ## Screenshots
-![image of template](/assets/template.png)
-![image of skybox](/assets/skybox.png)
-![image of shiny ball](/assets/shinyball.png)
-![image of floating youtube vid](/assets/floatingvid.png)
+![image of template](/public/assets/template.png)
+![image of skybox](/public/assets/skybox.png)
+![image of shiny ball](/public/assets/shinyball.png)
+![image of floating youtube vid](/public/assets/floatingvid.png)
 
 ## Contributions
 Please feel free to suggest any improvements by submitting a pull request.
