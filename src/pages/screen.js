@@ -55,7 +55,7 @@ export default function Screen() {
 				container.appendChild( renderer.domElement );
 
 				var group = new THREE.Group();
-				group.add( new Element( 'HfDhlQwF-NQ', 0, 0, 0, 0 ) );
+				group.add( new Element( 'b0pSIP2eJvs', 0, 0, 0, 0 ) );
 
 				scene.add( group );
 

@@ -27,8 +27,8 @@ export default function Home() {
           // }}
         > 
           <div style={{display: 'flex', flexDirection: 'column', height: '100vh', alignItems: 'center', justifyContent: 'center'}}>
-            <Typing text={["Wbu wyd?"]} cssName={'name'} />
-            <Typing text={["Zaza keeps running over my keyboatfdysgu2718uy32h"]} cssName={'subtitle'} />
+            <Typing text={["Scroll down...", "but not to fast."]} cssName={'name'} />
+            <Typing text={["My cat keeps running over my keyboatfdysgu2718uy32h"]} cssName={'subtitle'} />
           </div>
         </ParallaxLayer>
         <ParallaxLayer
